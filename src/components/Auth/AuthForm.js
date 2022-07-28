@@ -5,6 +5,7 @@ import AuthContext from '../Store/auth-context';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+  
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 const inputEmail = useRef();
@@ -22,9 +23,9 @@ setIsLoading(true);
 let url;
 if(isLogin){
   
-url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
+url=`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`
 }else{
-  url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
+  url=`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`
 }
   fetch(url,
   {
