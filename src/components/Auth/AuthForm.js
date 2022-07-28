@@ -22,9 +22,9 @@ setIsLoading(true);
 let url;
 if(isLogin){
   
-url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAnZD-xTIeCoc79We_1Ex582k7MuodFI_I'
+url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
 }else{
-  url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAnZD-xTIeCoc79We_1Ex582k7MuodFI_I'
+  url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
 }
   fetch(url,
   {
