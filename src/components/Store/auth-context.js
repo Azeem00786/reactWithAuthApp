@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useHistory } from "react-router-dom";
 const AuthContext = React.createContext({
     token: '',
     isLoggedIn: false,
@@ -9,27 +9,21 @@ const AuthContext = React.createContext({
 })
 
 export const AuthContextProvider = (props) => {
-const calRemainingTime = (expirationTime) =>{
-    const currentTime = new Date().getTime();
-    const adjExpirationTime = new Date(expirationTime).getTime();
-    const remainingDuration = adjExpirationTime - currentTime;
-    return remainingDuration;
-}
 
     const getToken = localStorage.getItem('firebaseToken')
     const [token, setToken] = useState(getToken)
+    const afterLogout = useHistory();
     // this return truthy or falsy value
     const userIsLogedIn = !!token;
 
     const logoutHandler = () => {
         setToken(null);
         localStorage.removeItem('firebaseToken')
+        afterLogout.push('/login')
     }
-    const loginHandler = (token, expirationTime) => {
+    const loginHandler = (token) => {
         setToken(token);
         localStorage.setItem('firebaseToken', token);
-        const remainingTime = calRemainingTime(expirationTime)
-        setTimeout(logoutHandler, remainingTime);
     }
 
     const contextValue = {

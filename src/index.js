@@ -4,12 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import { AuthContextProvider } from './components/Store/auth-context';
-
+// import TodoContextProvider from './components/Store/todo-context'
 ReactDOM.render(
+  
   <AuthContextProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
-  </AuthContextProvider>,
+  </AuthContextProvider>
+  ,
   document.getElementById('root')
 );
