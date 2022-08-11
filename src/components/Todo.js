@@ -8,6 +8,7 @@ const Todo=(props)=>{
     
     const deleteTodoHandler=()=>{
         deleteDoc(doc(db,'todos',props.arr.id))
+        
     }
 return (
 <List className={classes.todo__list}>

@@ -14,7 +14,7 @@ const MainNavigation = () => {
   return (
     <header className={classes.header}>
 
-      <Link to='/'>
+      <Link to='/todo'>
         <div className={classes.logo}>React Authentication</div>
       </Link>
       <nav>

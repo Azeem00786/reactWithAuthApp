@@ -7,6 +7,7 @@ const Login = () => {
   const inputPassword = useRef();
   const redirectAfterLogin = useHistory()
   const createCtx = useContext(AuthContext);
+
   const formSubmithandler = (event) => {
     event.preventDefault();
     const inputEmailValue = inputEmail.current.value;
@@ -34,7 +35,9 @@ const Login = () => {
 
       .then(json => {
         alert('you are logged in')
-        createCtx.login(json.idToken)
+
+
+        createCtx.login(json)
         redirectAfterLogin.replace('/todo')
         if (json.ok) {
           alert('hii')

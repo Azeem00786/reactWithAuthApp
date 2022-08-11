@@ -23,9 +23,9 @@ function App() {
         {createCtx.isLoggedIn && (<Route path='/todo'>
           <MainTodo />
         </Route>)}
-        <Route path='/' exact>
+        {!createCtx.isLoggedIn && <Route path='/' exact>
           <LoginPage />
-        </Route>
+        </Route>}
         {!createCtx.isLoggedIn && (<Route path='/Signup'>
           <SignupPage />
         </Route>)}       
