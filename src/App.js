@@ -20,22 +20,23 @@ function App() {
 
 
       <Switch>
-        {createCtx.isLoggedIn && (<Route path='/todo'>
-          <MainTodo />
-        </Route>)}
-        {!createCtx.isLoggedIn && <Route path='/' exact>
+        
+        <Route path='/' exact>
           <LoginPage />
-        </Route>}
-        {!createCtx.isLoggedIn && (<Route path='/Signup'>
+        </Route>
+        {createCtx.isLoggedIn && (<Route path='/todo' >
+          <MainTodo />
+        </Route>)} 
+        <Route path='/Signup'>
           <SignupPage />
-        </Route>)}       
-        <Route path='/profile'>
+        </Route>   
+        {createCtx.isLoggedIn && (<Route path='/profile'>
           <UserProfile />
           {/* <Redirect to='/auth'/> */}
-        </Route>
-        <Route path='*'>
-          <Redirect to='/' />
-        </Route>
+        </Route>)}
+          <Route path='*'>
+            <Redirect to='/' />
+          </Route>
       </Switch>
     </Layout>
   );

@@ -50,7 +50,7 @@ const Login = () => {
   }
   return (
     <section className={classes.auth}>
-      this is a signup page
+      this is a login page
       <form onSubmit={formSubmithandler}>
         <div className={classes.control}>
           <label htmlFor='email'>Your Email</label>

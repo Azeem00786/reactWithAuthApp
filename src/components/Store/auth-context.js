@@ -5,7 +5,7 @@ const AuthContext = React.createContext({
     isLoggedIn: false,
     login: (json) => { },
     logout: () => { },
-    response:{}
+    response: {}
 
 })
 
@@ -15,22 +15,26 @@ export const AuthContextProvider = (props) => {
     const [token, setToken] = useState(getToken)
     const [response, setResponse] = useState('')
     const afterLogout = useHistory();
+
     // this return truthy or falsy value
     const userIsLogedIn = !!token;
 
     const logoutHandler = () => {
-        setToken(null);
+
         localStorage.removeItem('firebaseToken')
-        afterLogout.push('/login')
-       
+        setToken(null);
+
+        afterLogout.replace('/')
+
     }
     const loginHandler = (json) => {
 
         setToken(json.idToken);
         setResponse(json);
-        
-        
+
+
         localStorage.setItem('firebaseToken', JSON.stringify(json));
+
     }
 
     const contextValue = {
@@ -38,7 +42,7 @@ export const AuthContextProvider = (props) => {
         isLoggedIn: userIsLogedIn,
         login: loginHandler,
         logout: logoutHandler,
-        response:response
+        response: response
     }
     return (
         <AuthContext.Provider value={contextValue}>

@@ -19,12 +19,16 @@ const MainNavigation = () => {
       </Link>
       <nav>
         <ul>
+        {!createCtx.isLoggedIn &&(<li>
+           
+            <Link to='/'>login</Link>
+          </li>)}
 
-          {!createCtx.isLoggedIn && (<li>
+          {!createCtx.isLoggedIn &&(<li>
             {/* <Link to='/auth'>Login</Link> */}
             <Link to='/Signup'>Signup</Link>
           </li>)}
-          {createCtx.isLoggedIn && (<li>
+          {createCtx.isLoggedIn &&(<li>
             <Link to='/todo'>TodoApp</Link>
           </li>)}
 

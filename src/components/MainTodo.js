@@ -6,14 +6,15 @@ import { collection, query, where, onSnapshot, addDoc, serverTimestamp } from 'f
 import classes from './mainTodo.module.css';
 
 
-function MainTodo({ deleteTodoHandler }) {
+function MainTodo() {
 
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
-
+    // const [loading, setLoading] = useState(false);
     let getFirebaseResponseObject = JSON.parse(localStorage.getItem('firebaseToken'));
-    useEffect(() => {
 
+    useEffect(() => {
+        
         const q = query(collection(db, "todos"), where("userId", "==", getFirebaseResponseObject.localId));
         onSnapshot(q, (snapshot) => {
 
@@ -22,8 +23,6 @@ function MainTodo({ deleteTodoHandler }) {
                 id: doc.id,
                 item: doc.data()
             })))
-
-
         })
 
     }, [input, getFirebaseResponseObject]);
@@ -48,6 +47,7 @@ function MainTodo({ deleteTodoHandler }) {
         setInput('')
         // console.log(todos)
     };
+    const showDAata = todos.map(item => <Todo key={item.id} arr={item} />);
     return (
         <div className={classes.MainTodo}>
             <h2> TODO List App</h2>
@@ -58,8 +58,8 @@ function MainTodo({ deleteTodoHandler }) {
             </form>
             <h4>Total Todo: {todos.length}</h4>
             <ul>
-                {todos.map(item => <Todo key={item.id} arr={item} deleteTodoHandler={deleteTodoHandler} />)}
-            </ul>
+                {showDAata}
+            </ul>   
         </div>
     );
 }

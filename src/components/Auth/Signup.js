@@ -8,7 +8,7 @@ const Signup = () => {
   const redirectToHome = useHistory();
   const createCtx = useContext(AuthContext);
   const formSubmithandler = (event) => {
-    console.log('hii')
+
     event.preventDefault();
     const inputEmailValue = inputEmail.current.value;
     const inputPasswordValue = inputPassword.current.value;
@@ -25,14 +25,25 @@ const Signup = () => {
 
           'Content-Type': 'application/json'
         }
-      }).then(response => response.json()
+      }).then(response => {
+
+        if (!response.ok) {
+          throw new Error('error');
+
+        }
+        return response.json()
+
+      }
       ).then((json => {
-        createCtx.login(json.idToken)
-        redirectToHome.replace('/home');
-        return console.log();
+        createCtx.login(json)
+        redirectToHome.replace('/todo');
+
+      })).catch((error) => {
+        alert(error.message)
+
       })
 
-      )
+
 
 
   }

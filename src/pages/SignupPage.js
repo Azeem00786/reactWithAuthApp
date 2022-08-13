@@ -1,6 +1,9 @@
 import Signup from "../components/Auth/Signup";
 const SignupPage = () =>{
-    return <Signup/>
+    return (
+       
+    <Signup/>
+    )
         
 }
 export default SignupPage;
